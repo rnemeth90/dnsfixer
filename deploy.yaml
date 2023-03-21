@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: win-node-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: hpc-scheduler
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["create", "update", "delete", "patch", "get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: win-node-manager
+subjects:
+- kind: ServiceAccount
+  name: winOp-node-operator
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cloud-node-manager
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: winOp-hpc-scheduler
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: win-node-operator
+  namespace: default
+roleRef:
+  kind: Role
+  name: hpc-scheduler
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: win-node-operator
+  namespace: default
+  labels:
+    app: win-node-operator
+spec:
+  selector:
+    matchLabels:
+      app: win-node-operator
+  template:
+    metadata:
+      labels:
+        app: win-node-operator
+    spec:
+      serviceAccount: win-node-operator
+      tolerations:
+      - key: node/freshness
+        operator: Exists
+        effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/os: windows
+      Containers:
+      - name: win-node-operator
+        image: 
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: TAINT
+          value: node/freshness=new:NoSchedule
+      terminationGracePeriodSeconds: 30
