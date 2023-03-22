@@ -1,26 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/windows-node-operator/src/Operator.csproj": {}
+    "C:\\repos\\dnsfixer\\src\\Operator.csproj": {}
   },
   "projects": {
-    "/workspaces/windows-node-operator/src/Operator.csproj": {
+    "C:\\repos\\dnsfixer\\src\\Operator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/windows-node-operator/src/Operator.csproj",
+        "projectUniqueName": "C:\\repos\\dnsfixer\\src\\Operator.csproj",
         "projectName": "Operator",
-        "projectPath": "/workspaces/windows-node-operator/src/Operator.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/windows-node-operator/src/obj/",
+        "projectPath": "C:\\repos\\dnsfixer\\src\\Operator.csproj",
+        "packagesPath": "C:\\Users\\Ryan.Nemeth\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\dnsfixer\\src\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Ryan.Nemeth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://marketingops.pkgs.visualstudio.com/_packaging/adam_nuget/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
@@ -71,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.201/sdk/7.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.104\\RuntimeIdentifierGraph.json"
         }
       }
     }

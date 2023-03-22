@@ -29,7 +29,6 @@ try {
     })
     .Build();
 
-
   await host.StartAsync();
   await host.StopAsync();
   await host.WaitForShutdownAsync();
